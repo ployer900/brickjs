@@ -1,4 +1,4 @@
-import UIView from '../view/UIView.js';
+import UIView from '../../core/UIView.js';
 
 export default class UIText extends UIView {
   constructor(text) {

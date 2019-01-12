@@ -3,7 +3,5 @@
  */
 export default class UIEvent {
   constructor() {}
-  addTarget() {
-
-  }
+  addTarget() {}
 }

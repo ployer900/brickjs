@@ -1,32 +1,30 @@
 /**
  * 定义view基类，继承于UIEvent类
  */
-import util from '../../utils/index.js';
-
+let uid = 0;
 export default class UIView extends UIEvent {
   constructor(width, height) {
     super(width);
     this._width = width;
     this._height = height;
-    this._style = {};
+    this._classname = null;
     this._el = null;
+    this._uniqId = ++uid;
   }
-  _serializeStyle() {
-    const { _style } = this;
-    return Object.keys(_style).map(key => `${util.toJoin(key)}:${_style[key]}`).join(';');
-  }
-  _setStyleAttribute() {
-    this._el.setAttribute('style', this._serializeStyle());
-  }
-  addStyle(style = {})  {
-    this._style = style;
-    return this;
+  addClass(classname) {
+    this._classname = classname;
+    this._el.setAttribute('class', classname);
   }
   addTarget(target, selector) {
-    this._el.addEventListener('click', function() {
-      target.selector();
-    });
-    return this;
+    if (this._el instanceof Element) {
+      // 文本节点
+      // 无事件的节点类型去除(依据nodeType值)
+      this._el.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        (typeof target[selector] === 'function') && target[selector]();
+      });
+    }
   }
   addSubView(view) {
     if (
@@ -39,6 +37,8 @@ export default class UIView extends UIEvent {
       );
     }
     (this._el instanceof Element) && this._el.appendChild(view.render());
-    return this;
+  }
+  render() {
+    return this._el;
   }
 }
