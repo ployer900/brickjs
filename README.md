@@ -1,3 +1,3 @@
 # brickjs
 
-brickjs: A ui framework for building web project quickly.
+brickjs: A frontend framework, allow you develop webapp like native app.
