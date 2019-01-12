@@ -4,10 +4,13 @@ import UIText from '../text/UIText.js';
 
 const BUTTON = 'button';
 export default class UIButton extends UIView {
-  constructor(width, height, text) {
-    super(width, height);
-    this._text = text || 'button';
+  constructor() {
+    super();
+    this._text = 'button';
     this._el = document.createElement(BUTTON);
+  }
+  setTitle(text) {
+    this._text = text;
   }
   render() {
     this.addSubView(new UIText(this._text));

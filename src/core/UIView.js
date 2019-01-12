@@ -1,12 +1,12 @@
 /**
  * 定义view基类，继承于UIEvent类
  */
+import UIViewEvent from './UIViewEvent.js';
+
 let uid = 0;
-export default class UIView extends UIEvent {
-  constructor(width, height) {
-    super(width);
-    this._width = width;
-    this._height = height;
+export default class UIView extends UIViewEvent {
+  constructor() {
+    super();
     this._classname = null;
     this._el = null;
     this._uniqId = ++uid;

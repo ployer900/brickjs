@@ -1,7 +1,7 @@
 /**
  * UI事件类
  */
-export default class UIEvent {
+export default class UIViewEvent {
   constructor() {}
   addTarget() {}
 }
