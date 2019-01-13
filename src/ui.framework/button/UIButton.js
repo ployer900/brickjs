@@ -1,19 +1,22 @@
-
+/**
+ * button
+ */
 import UIView from '../../core/UIView.js';
-import UIText from '../text/UIText.js';
+import UIRawText from '../text/UIRawText.js';
+import { ELEMENT_TAG } from '../const.js';
 
-const BUTTON = 'button';
+const DEFAULT_TEXT = 'button';
 export default class UIButton extends UIView {
-  constructor() {
+  constructor(text) {
     super();
-    this._text = 'button';
-    this._el = document.createElement(BUTTON);
+    this._el = document.createElement(ELEMENT_TAG.BUTTON);
+    this.setTitle(text);
   }
   setTitle(text) {
-    this._text = text;
+    this._text = text || DEFAULT_TEXT;
+    this.addSubView(new UIRawText(this._text));
   }
   render() {
-    this.addSubView(new UIText(this._text));
     return this._el;
   }
 }
