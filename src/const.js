@@ -1,5 +1,6 @@
 export const ELEMENT_TAG = {
-  BUTTON: 'div',
+  VIEW: 'div',
+  BUTTON: 'button',
   TEXT: 'span',
   IMAGE: 'img',
 };
