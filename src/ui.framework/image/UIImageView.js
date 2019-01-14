@@ -2,29 +2,33 @@
  * 图片
  */
 import UIView from '../../core/UIView.js';
-import { ELEMENT_TAG } from '../const.js';
+import Image from './Image.js';
+import Error from '../../Error.js';
+import Log from '../../Log.js';
+import { ELEMENT_TAG } from '../../const.js';
 
 const ATTR = {
   SRC: 'src',
   ALT: 'alt',
 };
 export default class UIImageView extends UIView {
-  constructor(url, alt) {
+  constructor(image) {
     super();
-    this._url = url;
-    this._alt = alt;
-    this._el = document.createElement(ELEMENT_TAG.IMAGE);
-    this.setAttribute({ [ATTR.SRC]: url, [ATTR.ALT]: alt });
+    this.view = document.createElement(ELEMENT_TAG.IMAGE);
+    this.image = null;
+    if (image) {
+      if (!(image instanceof Image)) {
+        Error.throwTypeError(`image must be a instanceof Image.`);
+      }
+      this.image = image;
+      this.setAttribute({ [ATTR.SRC]: image.imageUrl, [ATTR.ALT]: image.imageAlt });
+    }
   }
-  setImageUrl(url) {
-    this._url = url;
-    this.setAttribute(ATTR.SRC, url);
-  }
-  setAlt(alt) {
-    this._alt = alt;
-    this.setAttribute(ATTR.ALT, alt);
-  }
-  render() {
-    return this._el;
+  setImage(image) {
+    if (!(image instanceof Image)) {
+      Error.throwTypeError(`image must be a instanceof Image.`);
+    }
+    this.image = image;
+    this.setAttribute({ [ATTR.SRC]: image.imageUrl, [ATTR.ALT]: image.imageAlt });
   }
 }

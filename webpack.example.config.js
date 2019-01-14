@@ -5,7 +5,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   mode: 'development',
-  entry: './test/button/button.js',
+  entry: './example/shop-list.js',
   output: {
     path: __dirname + '/dest',
     filename: '[name].js'
@@ -25,19 +25,25 @@ module.exports = {
         })
       },
       { test: /\.js$/, use: 'babel-loader' },
-      { test: /\.ts$/, use: 'awesome-typescript-loader' }
+      { test: /\.ts$/, use: 'awesome-typescript-loader' },
+      { test: /\.json$/, use: 'json-loader' }
     ]
   },
   plugins: [
     // new CleanWebpackPlugin(['dest', 'build']),
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      title: 'button test',
-      template: './test/button/index.html',
+      title: 'shop list example',
+      template: './example/shop-list.html',
       inject: 'body',
     }),
     new ExtractTextPlugin('css/index.css')
   ],
+  resolve: {
+    alias: {
+      '@ui': path.resolve(__dirname, './src/ui.framework/'),
+    }
+  },
   devServer: {
     contentBase: path.join(__dirname, 'dest'),
     port: 9090,

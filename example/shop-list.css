@@ -1,0 +1,21 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.shopItemButtonView {
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  background-color: #ff334d;
+  font-size: 0;
+}
+.shopImageView {
+  width: 100px;
+  height: 100px;
+  margin-right: 10px;
+}
+.shopTitleView {
+  font-size: 16px;
+  font-weight: 600;
+  color: #FFF;
+  vertical-align: top;
+}

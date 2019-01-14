@@ -13,7 +13,7 @@ class UIPageController extends UIViewController {
   outerTarget() {
     console.log('outerButton click callback.');
   }
-  render() {
+  renderView() {
     const image = new UIImageView();
     image.setImageUrl('https://p0.meituan.net/waimaipoi/fd5a0fb27081972600aa2da6e0d3c9374019.jpeg@180w_132h_1e_1c');
     image.setAlt('shopImage');
@@ -23,17 +23,18 @@ class UIPageController extends UIViewController {
     innerButton.addClass(s.innerButton);
     innerButton.setTitle('addSubView');
     innerButton.addSubView(image);
-    innerButton.addTarget(this, 'innerTarget');
+    innerButton.addTarget(this, this.innerTarget);
 
     const outerButton = new UIButton();
     outerButton.addClass(s.outerButton);
     outerButton.addSubView(innerButton);
-    outerButton.addTarget(this, 'outerTarget');
+    outerButton.addTarget(this, this.outerTarget);
 
     const wrapperButton = new UIButton();
     wrapperButton.addClass(s.wrapperButton);
     wrapperButton.addSubView(outerButton);
-    return wrapperButton.render();
+
+    this.addSubView(wrapperButton);
   }
 }
 
