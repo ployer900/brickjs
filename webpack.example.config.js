@@ -5,7 +5,10 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   mode: 'development',
-  entry: './example/shop-list.js',
+  entry: {
+    shoplist: './example/shop-list.js',
+    tinyreact: './tiny-react/app.js',
+  },
   output: {
     path: __dirname + '/dest',
     filename: '[name].js'
@@ -36,6 +39,14 @@ module.exports = {
       title: 'shop list example',
       template: './example/shop-list.html',
       inject: 'body',
+      chunks: ['shoplist'],
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'tinyreact.html',
+      title: 'tiny react example',
+      template: './tiny-react/index.html',
+      inject: 'body',
+      chunks: ['tinyreact'],
     }),
     new ExtractTextPlugin('css/index.css')
   ],
